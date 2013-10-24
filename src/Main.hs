@@ -8,16 +8,12 @@ import Data.IORef
 
 -- This url will work if you run doc/serve.py
 twitterStreamingAPIStatusUrl :: String
--- twitterStreamingAPIStatusUrl = "http://stream.twitter.com/1/statuses/sample.json"
-twitterStreamingAPIStatusUrl = "http://localhost:8080/"
-username :: String
-username = ""
-password :: String
-password = ""
-{-
-username = ""
-password = ""
--}
+twitterStreamingAPIStatusUrl = "https://stream.twitter.com/1.1/statuses/sample.json"
+--twitterStreamingAPIStatusUrl = "http://localhost:8080/"
+
+--Paste the OAuth tool header in the header field
+header :: String
+header = ""
 
 perWordOfStatus :: String -> IO()
 perWordOfStatus ('#':t) = putStrLn t
@@ -60,8 +56,7 @@ twitterReader = do
     Curl.setopts h
         [ Curl.CurlFailOnError   $ True
         , Curl.CurlURL           $ twitterStreamingAPIStatusUrl
-        , Curl.CurlUserPwd       $ username ++ ":" ++ password
-        , Curl.CurlHttpAuth      $ [Curl.HttpAuthAny]
+        , Curl.CurlHttpHeaders   $ [header]
         , Curl.CurlWriteFunction $ Curl.callbackWriter (collectLine buffer)]
     returnCode <- Curl.perform h
     putStrLn $ show returnCode
