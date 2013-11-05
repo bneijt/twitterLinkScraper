@@ -1,6 +1,7 @@
 #!/bin/bash
 #Download the urls from twitter and store them in files
 cd "`dirname "$0"`"
+. virtualenv/bin/activate
 mkdir -p data
 cd data
 
@@ -9,7 +10,7 @@ if [[ ! -e "logfifo" ]]; then
     mkfifo "logfifo"
 fi
 
-../dist/build/twitterLinkScraper/twitterLinkScraper > logfifo &
+python ../main.py > logfifo &
 PID=$!
 
 while true;do
