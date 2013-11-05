@@ -14,9 +14,9 @@ def randomSleep():
 def downloadAndReturnRealUrl(url):
     request = urllib2.Request(url)
     opener = urllib2.build_opener()
-    request.add_header('Accept-Encoding', 'gzip,deflate,sdch')
-    request.add_header('Accept-Language', 'en-US,en;q=0.8,nl;q=0.6')
-    request.add_header('User-Agent', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/28.0.1500.71 Chrome/28.0.1500.71 Safari/537.36')
+    #request.add_header('Accept-Encoding', 'gzip,deflate,sdch')
+    #request.add_header('Accept-Language', 'en-US,en;q=0.8,nl;q=0.6')
+    #request.add_header('User-Agent', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/28.0.1500.71 Chrome/28.0.1500.71 Safari/537.36')
     response = opener.open(request)
     #Read the response
     while True:
