@@ -1,5 +1,6 @@
 #!/bin/bash
 #Download the urls from twitter and store them in files
+set -e
 cd "`dirname "$0"`"
 . virtualenv/bin/activate
 mkdir -p data
@@ -12,7 +13,7 @@ fi
 
 python ../main.py > logfifo &
 PID=$!
-
+echo "Kill $PID to stop"
 while true;do
     for i in {1..50}; do
         currentFile="${i}.txt"
