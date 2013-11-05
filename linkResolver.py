@@ -27,21 +27,22 @@ def downloadAndReturnRealUrl(url):
 
 
 def main():
-    for inputCandidate in os.listdir("data"):
-        if inputCandidate.endswith(".txt"):
-            ifName = os.path.join("data", inputCandidate)
-            print("Opening " + ifName)
-            with codecs.open(ifName, "rb") as inputFile:
-                with codecs.open(ifName + ".clean", "wb") as outputFile:
-                    for inputUrl in inputFile.xreadlines():
-                        randomSleep()
-                        try:
-                            inputUrl = inputUrl.strip()
-                            r = downloadAndReturnRealUrl(inputUrl)
-                            outputFile.write(r.url + "\n")
-                        except urllib2.URLError, e:
-                            print("Failed on " + inputUrl)
-                            pass
+    while True:
+        for inputCandidate in os.listdir("data"):
+            if inputCandidate.endswith(".txt"):
+                ifName = os.path.join("data", inputCandidate)
+                print("Opening " + ifName)
+                with codecs.open(ifName, "rb") as inputFile:
+                    with codecs.open(ifName + ".clean", "wb") as outputFile:
+                        for inputUrl in inputFile.xreadlines():
+                            randomSleep()
+                            try:
+                                inputUrl = inputUrl.strip()
+                                r = downloadAndReturnRealUrl(inputUrl)
+                                outputFile.write(r.url + "\n")
+                            except urllib2.URLError, e:
+                                print("Failed on " + inputUrl)
+                                pass
 
 if __name__ == "__main__":
     main()
