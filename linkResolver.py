@@ -40,8 +40,9 @@ def main():
                                 inputUrl = inputUrl.strip()
                                 r = downloadAndReturnRealUrl(inputUrl)
                                 outputFile.write(r.url + "\n")
-                            except urllib2.URLError, e:
+                            except Exception, e:
                                 print("Failed on " + inputUrl)
+                                print("  " + str(e))
                                 pass
 
 if __name__ == "__main__":
